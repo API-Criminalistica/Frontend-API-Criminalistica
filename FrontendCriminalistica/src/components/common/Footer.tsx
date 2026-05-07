@@ -3,7 +3,6 @@ import { Mail } from "lucide-react"
 
 const footerLinks = {
   Product: [
-    { label: "Translator", href: "/" },
     { label: "Tutorial", href: "/" },
     { label: "Dashboard", href: "/" },
     { label: "About", href: "/" },
@@ -73,10 +72,7 @@ export function Footer() {
 
         <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 md:flex-row">
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} SilentEcho. All rights reserved.
-          </p>
-          <p className="text-sm text-muted-foreground">
-            Built with AI for a more inclusive world.
+            &copy; {new Date().getFullYear()} Api-Criminalistica. All rights reserved.
           </p>
         </div>
       </div>
