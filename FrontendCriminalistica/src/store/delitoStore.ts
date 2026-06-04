@@ -20,6 +20,7 @@ export const useDelitoStore = create<DelitoStore>((set) => ({
     set({ loading: true });
     try {
       const { data } = await delitoService.getAll();
+      console.log('RESPUESTA API:', data);
       set({ delitos: data, error: null });
     } catch (error) {
       set({ error: 'Error al cargar delitos' });

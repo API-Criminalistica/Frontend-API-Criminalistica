@@ -1,8 +1,11 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import L, { Map as LeafletMap, LatLngExpression } from 'leaflet';
 import type { Delito } from '../../types';
 import 'leaflet/dist/leaflet.css';
 import { useEffect, useRef } from 'react';
+import * as L from 'leaflet';
+
+type LeafletMap = any;
+type LatLngExpression = [number, number];
 
 // Configurar icono por defecto
 delete (L.Icon.Default.prototype as any)._getIconUrl;
@@ -61,21 +64,35 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
             ]}
           >
             <Popup>
-              <div className="w-64">
-                <h3 className="font-bold text-lg mb-2">
-                  {delito.nombre}
-                </h3>
-                <p className="text-sm text-gray-600 mb-2">
-                  {delito.descripcion}
-                </p>
-                <div className="text-xs">
-                  <p><strong>Tipo:</strong> {delito.tipoDelito.nombre}</p>
-                  <p><strong>Localidad:</strong> {delito.ubicacion.localidad.nombre}</p>
-                  <p><strong>Barrio:</strong> {delito.ubicacion.barrio.nombre}</p>
-                  <p><strong>Fecha:</strong> {new Date(delito.fecha).toLocaleDateString()}</p>
-                </div>
-              </div>
-            </Popup>
+  <div className="w-72">
+    <h3 className="font-bold text-red-600 text-lg">
+      🚨 {delito.tipoDelito.nombre}
+    </h3>
+
+    <hr className="my-2" />
+
+    <p className="text-sm">
+      {delito.descripcion}
+    </p>
+
+    <div className="mt-3 space-y-1 text-xs">
+      <p>
+        📍 <strong>Barrio:</strong>{' '}
+        {delito.ubicacion.barrio.nombre}
+      </p>
+
+      <p>
+        🏙️ <strong>Localidad:</strong>{' '}
+        {delito.ubicacion.localidad.nombre}
+      </p>
+
+      <p>
+        📅 <strong>Fecha:</strong>{' '}
+        {new Date(delito.fecha).toLocaleDateString()}
+      </p>
+    </div>
+  </div>
+</Popup>
           </Marker>
         ))}
       </MapContainer>

@@ -8,6 +8,7 @@ export const MapView = () => {
   useEffect(() => {
     fetchDelitos();
   }, []);
+  console.log('Delitos cargados:', delitos);  
 
   if (loading) return <div className="text-center py-10">Cargando delitos...</div>;
 

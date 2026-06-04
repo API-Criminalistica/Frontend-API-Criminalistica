@@ -1,5 +1,6 @@
 import axios from 'axios';
 import type { Delito } from '../types';
+import { mapApiDelitoToFrontend } from '../adapters/delitoAdapter';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -12,7 +13,16 @@ const apiClient = axios.create({
 
 export const delitoService = {
   // Obtener todos los delitos
-  getAll: () => apiClient.get<Delito[]>('/delitos'),
+  getAll: async () => {
+  const response = await apiClient.get('/Delito');
+
+  return {
+    data: response.data.map(
+      (delito: any, index: number) =>
+        mapApiDelitoToFrontend(delito, index)
+    ),
+  };
+},
   
   // Obtener delito por ID
   getById: (id: number) => apiClient.get<Delito>(`/delitos/${id}`),
