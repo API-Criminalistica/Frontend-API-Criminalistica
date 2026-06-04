@@ -13,13 +13,18 @@ export const mapApiDelitoToFrontend = (
 
     fecha: apiDelito.fecha,
 
+    idEstado: 1,
+
     tipoDelito: {
       id: 1,
       nombre: apiDelito.tipoDelito,
     },
 
     ubicacion: {
+      id: index + 1,
+
       latitud: apiDelito.latitud,
+
       longitud: apiDelito.longitud,
 
       localidad: {
@@ -30,6 +35,11 @@ export const mapApiDelitoToFrontend = (
       barrio: {
         id: 1,
         nombre: 'Sin barrio',
+
+        localidad: {
+          id: 1,
+          nombre: 'Sin localidad',
+        },
       },
     },
   };

@@ -4,7 +4,7 @@ import 'leaflet/dist/leaflet.css';
 import { useEffect, useRef } from 'react';
 import * as L from 'leaflet';
 
-type LeafletMap = any;
+import type { Map } from 'leaflet';
 type LatLngExpression = [number, number];
 
 // Configurar icono por defecto
@@ -29,7 +29,7 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
   center = [4.6097, -74.0817],
   zoom = 12,
 }) => {
-  const mapRef = useRef<LeafletMap | null>(null);
+  const mapRef = useRef<Map | null>(null);  
 
   useEffect(() => {
     if (mapRef.current) {
@@ -40,14 +40,12 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
   return (
     <div className="w-full h-screen rounded-lg overflow-hidden shadow-lg">
       <MapContainer
-        center={center}
-        zoom={zoom}
-        className="w-full h-full"
-        style={{ minHeight: '500px' }}
-        whenCreated={(mapInstance) => {
-          mapRef.current = mapInstance;
-        }}
-      >
+  center={center}
+  zoom={zoom}
+  className="w-full h-full"
+  style={{ minHeight: '500px' }}
+  ref={mapRef}
+>
         <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         {...{
