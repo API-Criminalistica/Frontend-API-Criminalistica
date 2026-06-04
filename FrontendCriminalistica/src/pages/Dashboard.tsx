@@ -77,31 +77,106 @@ export const Dashboard: React.FC = () => {
   }, [delitos]);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-slate-100">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-between items-center">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">
-              Sistema de Criminalística
-            </h1>
-            <p className="text-sm text-gray-500 mt-1">
-              Dashboard de monitoreo de delitos en Bogotá
-            </p>
-          </div>
+      <header className="relative overflow-hidden bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 text-white shadow-xl">
+  <div className="absolute inset-0 opacity-10">
+    <div className="w-full h-full bg-[radial-gradient(circle_at_center,white,transparent_60%)]" />
+  </div>
 
-          <Link
-            to="/mapa"
-            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
-          >
-            <Map className="w-5 h-5" />
-            Ver Mapa
-          </Link>
-        </div>
-      </header>
+  <div className="max-w-7xl mx-auto px-6 py-10 relative z-10">
+    <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
+
+      <div>
+        <span className="uppercase tracking-[0.3em] text-blue-300 text-xs font-semibold">
+          Sistema Nacional de Criminalística
+        </span>
+
+        <h1 className="text-4xl font-black mt-2">
+          Centro de Monitoreo Criminal
+        </h1>
+
+        <p className="text-slate-300 mt-3 max-w-2xl">
+          Plataforma de análisis geoespacial y monitoreo de delitos para la
+          toma de decisiones estratégicas.
+        </p>
+      </div>
+
+      <Link
+        to="/mapa"
+        className="
+          flex items-center gap-3
+          bg-blue-600
+          hover:bg-blue-500
+          px-6 py-3
+          rounded-xl
+          font-semibold
+          transition-all
+          hover:scale-105
+          shadow-lg
+        "
+      >
+        <Map className="w-5 h-5" />
+        Abrir Centro Geoespacial
+      </Link>
+
+    </div>
+  </div>
+</header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-7xl mx-auto px-6 py-10">
+        {/* KPI Ejecutivo */}
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+
+  <div className="bg-white rounded-2xl shadow-md p-5 border border-gray-100">
+    <p className="text-gray-500 text-sm">
+      Localidad crítica
+    </p>
+
+    <h3 className="text-xl font-bold mt-2">
+      {stats.localidadConMasDelitos}
+    </h3>
+  </div>
+
+  <div className="bg-white rounded-2xl shadow-md p-5 border border-gray-100">
+    <p className="text-gray-500 text-sm">
+      Delito predominante
+    </p>
+
+    <h3 className="text-xl font-bold mt-2">
+      {stats.tipoDelitoMasComun}
+    </h3>
+  </div>
+
+  <div className="bg-white rounded-2xl shadow-md p-5 border border-gray-100">
+    <p className="text-gray-500 text-sm">
+      Tasa de resolución
+    </p>
+
+    <h3 className="text-xl font-bold mt-2 text-green-600">
+      {stats.totalDelitos > 0
+        ? (
+            (stats.delitosPorEstado.cerrados /
+              stats.totalDelitos) *
+            100
+          ).toFixed(1)
+        : 0}
+      %
+    </h3>
+  </div>
+
+  <div className="bg-white rounded-2xl shadow-md p-5 border border-gray-100">
+    <p className="text-gray-500 text-sm">
+      Registros totales
+    </p>
+
+    <h3 className="text-xl font-bold mt-2 text-blue-600">
+      {stats.totalDelitos}
+    </h3>
+  </div>
+
+</div>
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <StatCard
