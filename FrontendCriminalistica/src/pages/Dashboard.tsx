@@ -187,7 +187,6 @@ export const Dashboard: React.FC = () => {
               value: Math.abs(stats.trendDelitos),
               isPositive: stats.trendDelitos > 0,
             }}
-            bgColor="bg-red-50"
             description="Delitos registrados"
           />
 
@@ -195,7 +194,6 @@ export const Dashboard: React.FC = () => {
             title="Delitos Abiertos"
             value={stats.delitosPorEstado.abiertos}
             icon={Activity}
-            bgColor="bg-yellow-50"
             description="Sin resolver"
           />
 
@@ -203,7 +201,6 @@ export const Dashboard: React.FC = () => {
             title="En Investigación"
             value={stats.delitosPorEstado.investigacion}
             icon={BarChart3}
-            bgColor="bg-blue-50"
             description="Bajo análisis"
           />
 
@@ -211,7 +208,6 @@ export const Dashboard: React.FC = () => {
             title="Cerrados"
             value={stats.delitosPorEstado.cerrados}
             icon={TrendingUp}
-            bgColor="bg-green-50"
             description="Resueltos"
           />
         </div>
